@@ -8,7 +8,7 @@ RUN apt update \
     && apt autoclean \
     && apt -y install curl software-properties-common locales git cmake \
     && useradd -d /home/container -m container
-
+    
     # Ensure UTF-8
 RUN locale-gen en_US.UTF-8
 ENV LANG en_US.UTF-8
@@ -21,6 +21,8 @@ RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - \
     && apt -y install nodejs node-gyp \
     && npm install discord.js node-opus opusscript \
     && npm install sqlite3 --build-from-source
+    
+RUN npm install pm2 -g
 
 USER container
 ENV  USER container
